@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class ShieldCastPrefab : MonoBehaviour
 {
-    private bool isTouching;
+    public GameObject ignore;
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the ShieldCastPrefab is colliding with a specific tag
-        if (collision.gameObject.CompareTag("Block"))
+        if (collision.gameObject != ignore)// && collision.gameObject.CompareTag("Block"))
         {
-            // Set isTouching to true to indicate that the ShieldCastPrefab is touching the other object
-            isTouching = true;
             // Change color to red
-            gameObject.GetComponent<LineRenderer>().SetColors(Color.red,Color.red);
+            gameObject.GetComponent<LineRenderer>().startColor = Color.red;
+            gameObject.GetComponent<LineRenderer>().endColor = Color.red;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         // Check if the ShieldCastPrefab has stopped colliding with the specific tag
-        if (collision.gameObject.CompareTag("Block"))
+        if (collision.gameObject != ignore)
         {
-            // Set isTouching to false to indicate that the ShieldCastPrefab is no longer touching the other object
-            isTouching = false;
 
+            gameObject.GetComponent<LineRenderer>().startColor = Color.blue;
+            gameObject.GetComponent<LineRenderer>().endColor = Color.blue;
         }
     }
 

@@ -43,3 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ShieldRay
+    uniqueID: 1204586195
+    locked: 0
+  - name: BlockImage
+    uniqueID: 2428129489
+    locked: 0
+  - name: BlockWalls
+    uniqueID: 2433882339
+    locked: 0

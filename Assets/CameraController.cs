@@ -27,11 +27,11 @@ public class CameraController : MonoBehaviour
         GetComponent<Camera>().orthographicSize = distance;
 
         // Pan camera with right mouse button
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(2))
         {
             lastMousePosition = Input.mousePosition;
         }
-        else if (Input.GetMouseButton(1))
+        else if (Input.GetMouseButton(2))
         {
             Vector3 delta = Input.mousePosition - lastMousePosition;
             transform.Translate(-delta.x * panSpeed, -delta.y * panSpeed, 0f);
