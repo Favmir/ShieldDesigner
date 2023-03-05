@@ -9,10 +9,14 @@ public class CircleRaycast : MonoBehaviour
     public float radius = 13f;
     public int raySegments = 64;
     public float angle = 160f;
-    public LayerMask obstacleLayer;
+    //public LayerMask obstacleLayer;
     public GameObject ignore;
     [SerializeField] private ShieldCastPrefab _linePrefab;
+    public Material onMaterial;
+    public Material offMaterial;
 
+
+    
     private Vector3 shieldPos;
     private float startWidth;
     private float endWidth;
@@ -60,18 +64,16 @@ public class CircleRaycast : MonoBehaviour
             LineRenderer rayLine = ray.GetComponent<LineRenderer>();
             
             // get index 0 and 1 points in LineRenderer
-            RaycastHit2D hitInfo = Physics2D.Linecast(transform.TransformPoint(rayLine.GetPosition(0)), transform.TransformPoint(rayLine.GetPosition(1)));
-            
-            // Check if the collider of the hit object is not a trigger.
-            if (hitInfo.collider != null && hitInfo.collider.gameObject != ignore)
-            {
-                rayLine.startColor = Color.red;
-                rayLine.endColor = Color.red;
-            }
-            else
-            {
-                rayLine.startColor = Color.blue;
-                rayLine.endColor = Color.blue;
+            RaycastHit2D[] hitInfos = Physics2D.LinecastAll(transform.TransformPoint(rayLine.GetPosition(0)), transform.TransformPoint(rayLine.GetPosition(1)));
+
+            rayLine.material = onMaterial;
+
+            foreach(RaycastHit2D hitInfo in hitInfos){
+                // Layer3 is the Ignore ShieldRay layer
+                if (hitInfo.collider != null && hitInfo.collider.gameObject != ignore && hitInfo.collider.gameObject.layer != 3)
+                {
+                    rayLine.material = offMaterial;
+                }
             }
         }
 

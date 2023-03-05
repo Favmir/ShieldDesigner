@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1402867613201354095}
   - component: {fileID: 1402867613201354092}
+  - component: {fileID: 734282130472965120}
   m_Layer: 0
   m_Name: ShieldFront
   m_TagString: Untagged
@@ -28,7 +29,8 @@ Transform:
   m_LocalPosition: {x: 1.5, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1402867613390674689}
   m_Father: {fileID: 1402867613849952541}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -84,6 +86,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &734282130472965120
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402867613201354090}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!1 &1402867613390674814
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,12 +127,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402867613390674814}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 4.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1402867613849952541}
-  m_RootOrder: 3
+  m_Father: {fileID: 1402867613201354095}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1402867613390674688
 MonoBehaviour:
@@ -131,11 +149,10 @@ MonoBehaviour:
   radius: 13
   raySegments: 64
   angle: 160
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 2147483647
   ignore: {fileID: 1402867613201354090}
   _linePrefab: {fileID: -8450200199097586870, guid: a8dbfe8e231f12947af07b55361f9519, type: 3}
+  onMaterial: {fileID: 2100000, guid: 6701ffbb73e717c4ba5252fdac3aa41b, type: 2}
+  offMaterial: {fileID: 2100000, guid: a0b583d0f991eeb4daafcab309bbf316, type: 2}
 --- !u!1 &1402867613696896180
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,10 +331,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1402867613849952541}
   - component: {fileID: 1402867613849952538}
-  - component: {fileID: 1402867613849952540}
+  - component: {fileID: 5680184968262219509}
   m_Layer: 0
   m_Name: ShieldGenerator
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -337,7 +354,6 @@ Transform:
   - {fileID: 1402867613696896183}
   - {fileID: 1402867613201354095}
   - {fileID: 1402867613744491083}
-  - {fileID: 1402867613390674689}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -353,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc815ae9d60dbe4480f8ddcc152eb84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1402867613849952540
+--- !u!61 &5680184968262219509
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

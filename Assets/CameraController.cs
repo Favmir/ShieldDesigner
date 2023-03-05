@@ -29,13 +29,19 @@ public class CameraController : MonoBehaviour
         // Pan camera with right mouse button
         if (Input.GetMouseButtonDown(2))
         {
-            lastMousePosition = Input.mousePosition;
+            // Record the mouse position when the button is first pressed.
+            lastMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
         else if (Input.GetMouseButton(2))
         {
-            Vector3 delta = Input.mousePosition - lastMousePosition;
-            transform.Translate(-delta.x * panSpeed, -delta.y * panSpeed, 0f);
-            lastMousePosition = Input.mousePosition;
+            // Calculate the distance the mouse has moved since the button was pressed.
+            Vector3 delta = Camera.main.ScreenToWorldPoint(Input.mousePosition) - lastMousePosition;
+
+            // Move the camera in the opposite direction of the mouse movement.
+            transform.position -= delta * panSpeed;
+
+            // Update the last mouse position.
+            lastMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
 }
