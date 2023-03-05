@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SnapToGrid : MonoBehaviour
 {
+    public Vector2 centerOffset;
+
     private bool isDragging;
     private Vector3 dragStartPosition;
     private Collider2D dragCollider;
@@ -20,9 +22,24 @@ public class SnapToGrid : MonoBehaviour
         dragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         dragStartPosition.z = 0;
         
-        isDragging = true;
+        // if alt is pressed delete
+        if (Input.GetKey(KeyCode.LeftAlt))
+        {
+            Destroy(gameObject);
+        }
+        // if control is pressed flip horizontally
+        else if (Input.GetKey(KeyCode.LeftControl))
+        {
 
-
+                // flip the object horizontally
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                transform.Translate(new Vector3(-transform.localScale.x*2 * centerOffset.x, 0, 0), transform);
+        }
+         else
+        {
+            isDragging = true;
+        }
+        
     }
 
     private void OnMouseDrag()
@@ -31,9 +48,23 @@ public class SnapToGrid : MonoBehaviour
         mousePos.z = transform.position.z; // Keep the z position of the object
         if (isDragging)
         {
+            // if alt is pressed delete
+            if (Input.GetKey(KeyCode.LeftAlt))
+            {
+                Destroy(gameObject);
+            }
+            // if control is pressed flip horizontally
+            else if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                // flip the object horizontally
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                transform.Translate(new Vector3(-transform.localScale.x * 2 * centerOffset.x, 0, 0), transform);
+                dragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                dragStartPosition.z = 0;
+            }
             // Right mouse button rotates gameObject 90 degrees
             // using mousePos as center
-            if (Input.GetMouseButtonDown(1))
+            else if (Input.GetMouseButtonDown(1))
             {
                 Vector3 offset = mousePos - transform.position;
                 transform.Rotate(0, 0, -90);
@@ -57,8 +88,18 @@ public class SnapToGrid : MonoBehaviour
                                             Mathf.Round(currentPos.y),
                                             Mathf.Round(currentPos.z));
 
-        // if there is another object in the same position delete it
-        var colliders = Physics2D.OverlapBoxAll(transform.position, dragCollider.bounds.size, 0);
+        // get other object colliding with given dragCollider
+
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(dragCollider.bounds.center, dragCollider.bounds.size - new Vector3(0.98f,0.98f,0.98f), 0);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider != dragCollider && collider.gameObject.CompareTag("Block"))
+            {
+                Destroy(collider.gameObject);
+            }
+        }
+       
+        
     }
 
     private void Update()

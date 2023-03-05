@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc815ae9d60dbe4480f8ddcc152eb84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centerOffset: {x: 0.5, y: 0.5}
 --- !u!60 &-6387035964424578458
 PolygonCollider2D:
   m_ObjectHideFlags: 0
