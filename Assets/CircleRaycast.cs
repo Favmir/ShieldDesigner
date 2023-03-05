@@ -74,6 +74,9 @@ public class CircleRaycast : MonoBehaviour
                 {
                     rayLine.material = offMaterial;
                 }
+
+                // TODO if shield is redundent(not contributing to the outermost shield) then set the material to special material
+                // can check by seeing if the end of ray is inside another shield ray
             }
         }
 

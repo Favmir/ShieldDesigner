@@ -106,4 +106,16 @@ public class SnapToGrid : MonoBehaviour
     {
 
     }
+    /*
+    public Vector3 getCenter()
+    {
+        return transform.position + centerOffset.x * transform.forward;
+    }
+
+    public void moveCenterTo(Vector3 destination)
+    {
+        transform.position += destination - centerOffset.x * transform.forward;
+    }
+
+    */
 }
