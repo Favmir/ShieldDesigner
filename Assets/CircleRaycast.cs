@@ -67,11 +67,13 @@ public class CircleRaycast : MonoBehaviour
             RaycastHit2D[] hitInfos = Physics2D.LinecastAll(transform.TransformPoint(rayLine.GetPosition(0)), transform.TransformPoint(rayLine.GetPosition(1)));
 
             rayLine.material = onMaterial;
+            ray.gameObject.layer = 0;
 
             foreach(RaycastHit2D hitInfo in hitInfos){
                 // Layer3 is the Ignore ShieldRay layer
                 if (hitInfo.collider != null && hitInfo.collider.gameObject != ignore && hitInfo.collider.gameObject.layer != 3)
                 {
+                    ray.gameObject.layer = 1;
                     rayLine.material = offMaterial;
                 }
 

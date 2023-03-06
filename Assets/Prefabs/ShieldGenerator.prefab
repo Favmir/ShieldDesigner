@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 1402867613849952541}
   - component: {fileID: 1402867613849952538}
   - component: {fileID: 5680184968262219509}
+  - component: {fileID: 8351828464987469860}
   m_Layer: 0
   m_Name: ShieldGenerator
   m_TagString: Block
@@ -396,3 +397,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 4}
   m_EdgeRadius: 0
+--- !u!114 &8351828464987469860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402867613849952539}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 954288cde16d64b41a0d0fb1bc2217be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: {fileID: 0}
+  end: {fileID: 0}
+  origin: {fileID: 0}

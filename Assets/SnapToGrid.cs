@@ -30,7 +30,6 @@ public class SnapToGrid : MonoBehaviour
         // if control is pressed flip horizontally
         else if (Input.GetKey(KeyCode.LeftControl))
         {
-
                 // flip the object horizontally
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
                 transform.Translate(new Vector3(-transform.localScale.x*2 * centerOffset.x, 0, 0), transform);
@@ -62,6 +61,12 @@ public class SnapToGrid : MonoBehaviour
                 dragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                 dragStartPosition.z = 0;
             }
+            else if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                GameObject clone = Instantiate(gameObject, transform.position, transform.rotation);
+                clone.GetComponent<SnapToGrid>().Snap();
+
+            }
             // Right mouse button rotates gameObject 90 degrees
             // using mousePos as center
             else if (Input.GetMouseButtonDown(1))
@@ -90,13 +95,18 @@ public class SnapToGrid : MonoBehaviour
 
         // get other object colliding with given dragCollider
 
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(dragCollider.bounds.center, dragCollider.bounds.size - new Vector3(0.98f,0.98f,0.98f), 0);
-        foreach (Collider2D collider in colliders)
+        if (dragCollider != null)
         {
-            if (collider != dragCollider && collider.gameObject.CompareTag("Block"))
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(dragCollider.bounds.center, dragCollider.bounds.size - new Vector3(0.98f, 0.98f, 0.98f), 0);
+
+            foreach (Collider2D collider in colliders)
             {
-                Destroy(collider.gameObject);
+                if (collider != dragCollider && collider.gameObject.CompareTag("Block"))
+                {
+                    Destroy(collider.gameObject);
+                }
             }
+
         }
        
         
